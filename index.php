@@ -10,15 +10,12 @@
 		else{
 			if(isset($_POST['firstName'])){
 				if($firstName == '' && $lastName != ''){
-					$error = 'Uzupełnij imię!';
 					$firstNameError = true;
 				}
 				else if($firstName != '' && $lastName == ''){
-					$error = 'Uzupełnij nazwisko!';
 					$lastNameError = true;
 				}
 				else if($firstName == '' && $lastName == ''){
-					$error = 'Uzupełnij imię i nazwisko!';	
 					$firstNameError = true;
 					$lastNameError = true;
 				}
@@ -32,6 +29,7 @@
 <head>
 	<title>Phone book</title>
 	<meta charset="utf-8" />
+	<link href="style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 	<nav>
@@ -39,7 +37,7 @@
 		<a href="#"><button>Szukaj</button></a>
 	</nav>
 	<div id="container">
-		<p id="error"><?php if(isset($error)){ echo $error; } ?></p>
+		<p class="error"><?php if($firstNameError || $lastNameError){ echo '<span>Brakujące dane!</span> '; } ?></p>
 		<form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 			<div id="defaultSearch">
 				<input class="<?php if($firstNameError){ echo 'red'; }else{ echo 'normal'; } ?>" type="text" placeholder="Imię" name="firstName" value="<?php if(isset($firstName)){ echo $firstName; } ?>">
