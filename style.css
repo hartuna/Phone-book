@@ -11,33 +11,39 @@ nav{
 	left: 0px;
 	width: 200px;
 	height: 100%;
-	background-color: #206020;
+	background-color: #f0e000;
 }
-button{
+.page{
 	margin: 10px 10px 0px 10px;
 	width: 180px;
 	height: 40px;
 	border: none;
-	background-color: #408040;
+	background-color: #d06000;
 	color: #ffffff;
 	font-size: 20px;
+	border-radius: 4px;
 }
-button:hover{
+.page:hover{
 	cursor: pointer;
-	background-color: #509050;
+	background-color: #e07000;
+}
+.errorWrapper{
+	height: 40px;
 }
 .error{
-	padding-top: 4px;
+	display: inline-block;
+	padding: 4px 10px;
 	margin-bottom: 10px;
 	height: 30px;
 	background-color: #c02020;
 	color: #ffffff;
 	text-align: center;
+	border-radius: 4px;
 }
 #container{
 	margin: 60px 0px 100px 300px;
-	width: 400px;
-	height: 1000px;
+	width: 500px;
+	height: 600px;
 }
 input{
 	padding: 10px;
@@ -45,11 +51,51 @@ input{
 	border: none;
 	border-bottom: 1px solid #dddddd;	
 	background-color: #fafafa;
+	border-radius: 6px;
 }
-#defaultSearch input{
+#defaultSearch input, #alternativeSearch input{
 	width: 400px;
+	height: 40px;
+}
+#change{
+	clear: both;
+	margin-bottom: 10px;
+	width: 400px;
+	height: 30px;
+	background-color: #404040;
+	border-radius: 4px;
+	margin-top: 50px;
+	color: #ffffff;
+	text-align: center;
+	border: none;
+}
+#change:hover{
+	cursor: pointer;
+	background-color: #505050;
+}
+#alternativeSearch input:nth-child(2), #alternativeSearch input:nth-child(3){
+	width: 140px;
 	height: 40px;
 }
 .red{
 	border-bottom: 1px solid #c02020;
+}
+#defaultSearch .send, #alternativeSearch .send{
+	padding: 0px;
+	float: right;
+	width: 90px;
+	height: 90px;
+	background-color: #f04000;
+	border: 6px solid #ffffff;
+	box-shadow: 2px 2px 4px #bbbbbb;
+	border-radius: 45px;
+	font-size: 18px;
+	color: #ffffff;
+}
+#noActive{
+	display: none;
+}
+#defaultSearch .send:hover, #alternativeSearch .send:hover{
+	cursor: pointer;
+	background-color: #f06000;
 }
