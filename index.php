@@ -1,10 +1,7 @@
 <?php
 	include('connect.php');	
-	$connect = new mysqli($dbServer, $dbUser, $dbPassword, $dbName);
-	if(mysqli_connect_errno()){
-		$error = 'Nie udało się nawiązać połączenia z bazą!';
-	}
-	$connect->query('set names "utf8" collate "utf8_polish_ci"');
+	$result = $connect->query('SELECT count(Id) FROM Data');
+	$volume = mysqli_fetch_array($result);
 	if(isset($_POST['sendDefault'])){
 		$active = 'default';
 		$firstName = $_POST['firstName'];
@@ -72,7 +69,11 @@
 <body>
 	<nav>
 		<a href="/phone-book/"><button class="page">Szukaj</button></a>
-		<a href="#"><button class="page">Dodaj</button></a>
+		<a href="/phone-book/dodaj.php"><button class="page">Dodaj</button></a>
+		<div id="volume">
+			<p>Pojemność: <span id="busy"><?php echo $volume['count(Id)']; ?></span> / 50</p>	
+			<div id="progress"></div>
+		</div>
 	</nav>
 	<div id="container">
 		<div class="errorWrapper">
@@ -86,8 +87,8 @@
 		</div>
 		<form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 			<div id="defaultSearch">
-				<input class="<?php if($firstNameError){ echo 'red'; }else{ echo 'normal'; } ?>" type="text" placeholder="Imię" name="firstName" value="<?php if(isset($firstName)){ echo $firstName; } ?>">
-				<input class="<?php if($lastNameError){ echo 'red'; }else{ echo 'normal'; } ?>" type="text" placeholder="Nazwisko" name="lastName" value="<?php if(isset($lastName)){ echo $lastName; } ?>">
+				<input class="<?php if($firstNameError){ echo 'red'; } ?>" type="text" placeholder="Imię" name="firstName" value="<?php if(isset($firstName)){ echo $firstName; } ?>">
+				<input class="<?php if($lastNameError){ echo 'red'; } ?>" type="text" placeholder="Nazwisko" name="lastName" value="<?php if(isset($lastName)){ echo $lastName; } ?>">
 				<input class="send" <?php if($active == 'alternative'){ echo 'id="noActive"'; } ?> type="submit" name="sendDefault" value="Szukaj">
 			</div>
 		</form>
@@ -103,10 +104,10 @@
 			?>
 			</div>
 			<div id="alternativeSearch">
-				<input class="<?php if($streetError){ echo 'red'; }else{ echo 'normal'; } ?>" type="text" placeholder="Ulica" name="street" value="<?php if(isset($street)){ echo $street; } ?>">
-				<input class="<?php if($houseNumberError){ echo 'red'; }else{ echo 'normal'; } ?>" type="text" placeholder="Numer domu" name="houseNumber" value="<?php if(isset($houseNumber)){ echo $houseNumber; } ?>">
+				<input class="<?php if($streetError){ echo 'red'; } ?>" type="text" placeholder="Ulica" name="street" value="<?php if(isset($street)){ echo $street; } ?>">
+				<input class="<?php if($houseNumberError){ echo 'red'; } ?>" type="text" placeholder="Numer domu" name="houseNumber" value="<?php if(isset($houseNumber)){ echo $houseNumber; } ?>">
 				<input type="text" placeholder="Numer mieszkania" name="apartmentNumber" value="<?php if(isset($apartmentNumber)){ echo $apartmentNumber; } ?>">
-				<input class="<?php if($cityError){ echo 'red'; }else{ echo 'normal'; } ?>" type="text" placeholder="Miejscowość" name="city" value="<?php if(isset($city)){ echo $city; } ?>">
+				<input class="<?php if($cityError){ echo 'red'; } ?>" type="text" placeholder="Miejscowość" name="city" value="<?php if(isset($city)){ echo $city; } ?>">
 				<input class="send" <?php if($active == 'default' || $active == 'none'){ echo 'id="noActive"'; } ?> type="submit" name="sendAlternative" value="Szukaj">
 			</div>
 			</form>	
@@ -128,7 +129,7 @@
 				<p><?php echo $value['HouseNumber']; ?></p>
 				<p><?php echo $value['ApartmentNumber']; ?></p>
 				<p><?php echo $value['City']; ?></p>
-				<p><?php echo $value['Number']; ?></p>
+				<p><?php echo $value['PhoneNumber']; ?></p>
 			</div>
 			<?php	
 			}

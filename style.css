@@ -13,6 +13,32 @@ nav{
 	height: 100%;
 	background-color: #f0e000;
 }
+#volume{
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	width: 160px;
+	height: 234px;
+	background-color: #ffffff;
+	border-radius: 6px;
+}
+#volume p{
+	margin: 4px auto 0px auto;
+	width: 140px;
+	height: 22px;
+	text-align: center;
+	font-size: 12px;
+	border-bottom: 1px solid #eeeeee;
+}
+#progress{
+	position: absolute;
+	left: 4px;
+	bottom: 4px;
+	width: 152px;
+	height: 0px;
+	background-color: red;
+	border-radius: 6px;
+}
 .page{
 	margin: 10px 10px 0px 10px;
 	width: 180px;
@@ -53,7 +79,7 @@ input{
 	background-color: #fafafa;
 	border-radius: 6px;
 }
-#defaultSearch input, #alternativeSearch input{
+#defaultSearch input, #alternativeSearch input, #defaultAdd input{
 	width: 400px;
 	height: 40px;
 }
@@ -80,7 +106,7 @@ input{
 .red{
 	border-bottom: 1px solid #c02020;
 }
-#defaultSearch .send, #alternativeSearch .send{
+#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
 	padding: 0px;
 	float: right;
 	width: 90px;
@@ -95,7 +121,14 @@ input{
 #noActive{
 	display: none;
 }
-#defaultSearch .send:hover, #alternativeSearch .send:hover{
+#defaultSearch .send:hover, #alternativeSearch .send:hover, #defaultAdd .send:hover{
 	cursor: pointer;
 	background-color: #f06000;
+}
+#defaultAdd p{
+	margin-bottom: 10px;
+	width: 400px;
+	text-align: center;
+	font-size: 10px;
+	color: #808080;
 }
