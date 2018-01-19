@@ -15,7 +15,11 @@
 			$result = $connect->prepare('INSERT Data (FirstName, LastName, Street, HouseNumber, ApartmentNumber, City, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)');	
 			$result->bind_param('sssssss', $firstName, $lastName, $street, $houseNumber, $apartmentNumber, $city, $phoneNumber);
 			$result->execute();
-			$result->close();	
+			$result->close();
+			if($email != ''){
+				mail($email, 'Dodanie wpisu', 'Dziękuję za skorzystanie z mojego formularza. Dane zostaną automatycznie usunięte gdy w bazie znajdzie się 50 pozycji.');
+			}	
+			header('Location: /phone-book/dodaj.php');
 		}
 		else{
 			if($firstName == ''){

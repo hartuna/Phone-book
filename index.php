@@ -7,14 +7,10 @@
 		$firstName = $_POST['firstName'];
 		$lastName = $_POST['lastName'];
 		if(isset($_POST['firstName'])){
-			if($firstName == '' && $lastName == ''){
-				$firstNameError = true;
-				$lastNameError = true;
-			}
-			else if($firstName == ''){
+			if($firstName == ''){
 				$firstNameError = true;
 			}
-			else if($lastName == ''){
+			if($lastName == ''){
 				$lastNameError = true;
 			}
 		}
@@ -26,31 +22,14 @@
 		$apartmentNumber = $_POST['apartmentNumber'];
 		$city = $_POST['city'];	
 		if(isset($_POST['street'])){
-			if($street == '' && $houseNumber == '' && $city == ''){
+			if($street == ''){
 				$streetError = true;
-				$houseNumberError = true;
-				$cityError = true;
 			}
-			else if($street != '' && $houseNumber == '' && $city == ''){
-				$houseNumberError = true;
-				$cityError = true;
-			}
-			else if($street == '' && $houseNumber != '' && $city == ''){
-				$streetError = true;
-				$cityError = true;
-			}
-			else if($street == '' && $houseNumber == '' && $city != ''){
-				$streetError = true;
+			if($houseNumber == ''){
 				$houseNumberError = true;
 			}
-			else if($street != '' && $houseNumber != '' && $city == ''){
+			if($city == ''){
 				$cityError = true;
-			}
-			else if($street != '' && $houseNumber == '' && $city != ''){
-				$houseNumberError = true;
-			}
-			else if($street == '' && $houseNumber != '' && $city != ''){
-				$streetError = true;
 			}
 		}
 	}
