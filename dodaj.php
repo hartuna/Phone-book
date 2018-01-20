@@ -11,7 +11,7 @@
 		$city = $_POST['city'];	
 		$phoneNumber = $_POST['phoneNumber'];	
 		$email = $_POST['email'];
-		if($firstName != '' && $lastName != '' && $street != '' && $houseNumber != '' && $apartmentNumber != '' && $city != '' && $phoneNumber != ''){
+		if($firstName != '' && $lastName != '' && $street != '' && $houseNumber != '' && $city != '' && $phoneNumber != ''){
 			$result = $connect->prepare('INSERT Data (FirstName, LastName, Street, HouseNumber, ApartmentNumber, City, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)');	
 			$result->bind_param('sssssss', $firstName, $lastName, $street, $houseNumber, $apartmentNumber, $city, $phoneNumber);
 			$result->execute();
@@ -53,6 +53,7 @@
 </head>
 <body>
 	<nav>
+		<img src="image/book.png" alt="książka telefoniczna" />
 		<a href="/phone-book/"><button class="page">Szukaj</button></a>
 		<a href="/phone-book/dodaj.php"><button class="page">Dodaj</button></a>
 		<div id="volume">
