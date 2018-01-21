@@ -5,52 +5,138 @@
 	box-sizing: border-box;
 	font-family: 'Verdana';
 }
+@media all and (min-width: 810px){
+	nav{
+		width: 204px;
+		height: 100%;	
+	}
+	nav img{
+		width: 180px;
+		height: 180px;	
+	}
+	#volume{
+		left: 20px;
+		bottom: 20px;
+		width: 160px;
+		height: 234px;	
+	}
+	#volume p{
+		font-size: 12px;
+		height: 22px;
+	}
+	#progress{
+		width: 152px;
+		height: 0px;
+	}
+	.page{
+		margin: 10px 10px 0px 10px;
+		width: 180px;
+		height: 40px;
+		font-size: 20px;
+	}
+	#container{
+		margin: 20px 0px 100px 300px;
+		width: 500px;
+	}
+	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #change{
+		width: 400px;
+	}
+	#change{
+		margin-top: 50px;
+	}
+	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
+		width: 90px;
+		height: 90px;	
+		font-size: 18px;
+	}
+	#defaultAdd p{
+		width: 400px;
+		font-size: 10px;
+	}
+}
+@media all and (max-width: 809px){
+	nav{
+		width: 100%;
+		height: 94px;
+	}
+	nav img{
+		width: 90px;
+		height: 90px;	
+	}
+	#volume{
+		right: 5px;
+		bottom: 5px;
+		width: 208px;
+		height: 50px;	
+	}
+	#volume p{
+		font-size: 10px;
+		height: 16px;
+	}
+	#progress{
+		width: 0px;
+		height: 22px;
+	}
+	.page{
+		float: right;
+		margin: 5px;
+		width: 99px;
+		height: 30px;
+		font-size: 16px;
+	}
+	#container{
+		margin: 114px auto 100px auto;
+		width: 90%;
+	}
+	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #change{
+		width: 100%;
+	}
+	#change{
+		margin-top: 10px;
+	}
+	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
+		width: 70px;
+		height: 70px;	
+		font-size: 14px;
+	}
+	#defaultAdd p{
+		width: 100%;
+		font-size: 9px;
+	}
+}
 nav{
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	width: 204px;
-	height: 100%;
 	background-color: #f0f000;
 	box-shadow: 2px 0 6px #aaaaaa;
 }
 nav img{
-	margin-left: 10px;
-	width: 180px;
-	height: 180px;
+	margin: 0px 10px;
 }
 #volume{
 	position: absolute;
-	left: 20px;
-	bottom: 20px;
-	width: 160px;
-	height: 234px;
 	background-color: #ffffff;
 	border-radius: 6px;
 }
 #volume p{
 	margin: 4px auto 0px auto;
-	width: 140px;
-	height: 22px;
+	width: 90%;
 	text-align: center;
-	font-size: 12px;
+	color: #808080;
 	border-bottom: 1px solid #eeeeee;
 }
 #progress{
 	position: absolute;
 	left: 4px;
 	bottom: 4px;
-	width: 152px;
 	border-radius: 6px;
 }
 .page{
-	margin: 10px 10px 0px 10px;
-	width: 180px;
-	height: 40px;
 	border: none;
+	outline: none;
 	background-color: #d06000;
 	color: #ffffff;
-	font-size: 20px;
 	border-radius: 4px;
 }
 .page:hover{
@@ -71,9 +157,7 @@ nav img{
 	border-radius: 4px;
 }
 #container{
-	margin: 20px 0px 100px 300px;
-	width: 500px;
-	height: 600px;
+	height: 500px;
 }
 #searchWrapper{
 	height: 490px;
@@ -87,17 +171,14 @@ input{
 	border-radius: 6px;
 }
 #defaultSearch input, #alternativeSearch input, #defaultAdd input{
-	width: 400px;
 	height: 40px;
 }
 #change{
 	clear: both;
 	margin-bottom: 10px;
-	width: 400px;
 	height: 30px;
 	background-color: #404040;
 	border-radius: 4px;
-	margin-top: 50px;
 	color: #ffffff;
 	text-align: center;
 	border: none;
@@ -116,13 +197,10 @@ input{
 #defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
 	padding: 0px;
 	float: right;
-	width: 90px;
-	height: 90px;
 	background-color: #f04000;
 	border: 6px solid #ffffff;
 	box-shadow: 2px 2px 2px #bbbbbb;
 	border-radius: 45px;
-	font-size: 18px;
 	color: #ffffff;
 }
 #noActive{
@@ -134,9 +212,7 @@ input{
 }
 #defaultAdd p{
 	margin-bottom: 10px;
-	width: 400px;
 	text-align: center;
-	font-size: 10px;
 	color: #808080;
 }
 h2{
@@ -166,7 +242,7 @@ h2{
 	color: #aaaaaa;
 }
 .pager{
-	margin-top: 10px;
+	margin: 10px 0px;
 	width: 80px;
 	height: 40px;
 	background-color: #404040;

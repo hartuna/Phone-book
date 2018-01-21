@@ -49,6 +49,7 @@
 	<title>Phone book</title>
 	<meta charset="utf-8" />
 	<link href="style.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<script src="script.js"></script>
 </head>
 <body>

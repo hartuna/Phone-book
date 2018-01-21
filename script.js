@@ -4,6 +4,7 @@ window.onload = function(){
 	}
 	progress();
 	next();
+	
 }
 function change(){
 	var element = document.getElementById('change');
@@ -22,12 +23,18 @@ function modify(){
 }
 function progress(){
 	var busyData = document.getElementById('busy').textContent * 4;
+	
 	busy(busyData, busyData, 208);
 }
 function busy(busyData, height, color){
 	var progress = document.getElementById('progress');
 	if(busyData >= 0){
-		progress.style.height = height - busyData + 'px';
+		if(document.getElementById('volume').offsetWidth == 160){
+			progress.style.height = height - busyData + 'px';
+		}
+		else{
+			progress.style.width = height - busyData + 'px';	
+		}
 		progress.style.backgroundColor = 'rgb(240, ' + color + ', 0)';
 		busyData -= 2;
 		color -= 2;
