@@ -53,6 +53,14 @@
 		width: 400px;
 		font-size: 10px;
 	}
+	#help{
+		left: 232px;
+		width: 100%;
+	}
+	#description{
+		width: 536px;
+		border-radius: 0px 6px 0px 0px;
+	}
 }
 @media all and (max-width: 809px){
 	nav{
@@ -102,6 +110,15 @@
 	#defaultAdd p{
 		width: 100%;
 		font-size: 9px;
+	}
+	#help{
+		width: 100%;
+	}
+	#up{
+		right: 5%;
+	}
+	#description{
+		width: 100%;
 	}
 }
 nav{
@@ -255,4 +272,38 @@ h2{
 .pager:hover{
 	cursor: pointer;
 	background-color: #505050;
+}
+#help{
+	position: fixed;
+	bottom: -220px;
+	height: 260px;
+}
+#up{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border: none;
+	outline: none;
+	border-radius: 4px 4px 0px 0px;
+	background-color: #40a040;
+	color: #ffffff;
+	font-size: 24px;
+}
+#up:hover{
+	cursor: pointer;
+	background-color: #50b050;
+}
+#description{
+	position: absolute;
+	top: 40px;
+	height: 220px;
+	padding: 8px 20px;
+	background-color: rgba(40, 40, 40, 0.9);
+	text-align: justify;
+	color: #dddddd;
+	font-size: 11px;
+}
+#description li{
+	list-style-type: none;
+	padding: 0px 20px;
 }

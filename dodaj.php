@@ -12,6 +12,11 @@
 		$phoneNumber = $_POST['phoneNumber'];	
 		$email = $_POST['email'];
 		if($firstName != '' && $lastName != '' && $street != '' && $houseNumber != '' && $city != '' && $phoneNumber != ''){
+			if($volume['count(Id)'] >= 50){
+				$result = $connect->prepare('DELETE FROM `Data` WHERE Id > 10');
+				$result->execute();	
+				$result->close();
+			}
 			$result = $connect->prepare('INSERT Data (FirstName, LastName, Street, HouseNumber, ApartmentNumber, City, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)');	
 			$result->bind_param('sssssss', $firstName, $lastName, $street, $houseNumber, $apartmentNumber, $city, $phoneNumber);
 			$result->execute();
@@ -86,6 +91,25 @@
 				<input class="send" type="submit" name="Add" value="Dodaj">
 			</div>
 		</form>
+	</div>
+	<div id="help">
+		<button id="up">?</button>
+		<div id="description">
+			<p>W bazie znajduje się 10 stałych pozycji:</p>
+			<ul>
+				<li>- Bartłomiej Hartuna</li>
+				<li>- Bartłomiej Hartuna</li>
+				<li>- Bartłomiej Hartuna</li>
+				<li>- Zbigniew Malinowski</li>
+				<li>- Krzysztof Sakowski</li>
+				<li>- Dagmara Malinowska</li>
+				<li>- Dagmara Malinowska</li>
+				<li>- Katarzyna Pieńkowska</li>
+				<li>- Paulina Kowalska</li>
+				<li>- Zofia Sobkowska</li>
+			</ul>
+			<p>Pozostałe rekordy są automatycznie czyszczone gdy łącznie w bazie znajdzie się 50 wpisów. Aplikacja ma charakter edukacyjny i nie służy do zbierania danych.</p>
+		</div>
 	</div>
 </body>
 </html>

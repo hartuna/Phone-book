@@ -1,10 +1,10 @@
 window.onload = function(){	
+	progress();
+	up();
 	if(location.href == 'http://bartlomiejhartuna.pl/phone-book/'){
 		change();	
+		next();
 	}
-	progress();
-	next();
-	
 }
 function change(){
 	var element = document.getElementById('change');
@@ -23,7 +23,6 @@ function modify(){
 }
 function progress(){
 	var busyData = document.getElementById('busy').textContent * 4;
-	
 	busy(busyData, busyData, 208);
 }
 function busy(busyData, height, color){
@@ -36,8 +35,8 @@ function busy(busyData, height, color){
 			progress.style.width = height - busyData + 'px';	
 		}
 		progress.style.backgroundColor = 'rgb(240, ' + color + ', 0)';
-		busyData -= 2;
-		color -= 2;
+		busyData -= 4;
+		color -= 4;
 		setTimeout(function(){busy(busyData, height, color)}, 10);
 	}
 }
@@ -87,5 +86,40 @@ function changeResult(next, current, margin, direction){
 			result[next - 1].style.marginLeft = margin + 'px';
 			setTimeout(function(){changeResult(next, current, margin, direction)}, 10);	
 		}
+	}
+}
+function up(){
+	var up = document.getElementById('up');
+	up.addEventListener('click', checkUp, false);
+}
+function checkUp(){
+	var help = document.getElementById('up');
+	if(help.textContent == '?'){
+		expandHelp(-220, 'up');
+	}
+	else{
+		expandHelp(0, 'down');
+	}
+}
+function expandHelp(value, direction){
+	var up = document.getElementById('help');
+	if(value < 0 && direction == 'up'){
+		value += 20;
+		up.style.bottom = value + 'px';
+		setTimeout(function(){expandHelp(value, direction)}, 10);
+	}
+	else if(direction == 'down' && value > -220){
+		value -= 20;
+		up.style.bottom = value + 'px';
+		setTimeout(function(){expandHelp(value, direction)}, 10);
+	}
+	else{
+		var help = document.getElementById('up');
+		if(help.textContent == '?'){
+			help.textContent = 'X';
+		}
+		else{
+			help.textContent = '?';
+		}	
 	}
 }
