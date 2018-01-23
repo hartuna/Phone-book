@@ -25,7 +25,7 @@
 		height: 22px;
 	}
 	#progress{
-		width: 152px;
+		width: 152px !important;
 		height: 0px;
 	}
 	.page{
@@ -83,7 +83,7 @@
 	}
 	#progress{
 		width: 0px;
-		height: 22px;
+		height: 22px !important;
 	}
 	.page{
 		float: right;

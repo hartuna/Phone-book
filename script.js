@@ -5,6 +5,7 @@ window.onload = function(){
 		change();	
 		next();
 	}
+	resize();
 }
 function change(){
 	var element = document.getElementById('change');
@@ -20,6 +21,9 @@ function modify(){
 		button[0].style.display = 'none';
 		button[1].style.display = 'inline-block';
 	}
+	var error = document.getElementsByClassName('error');
+	error[0].style.display = 'none';
+	error[1].style.display = 'none';
 }
 function progress(){
 	var busyData = document.getElementById('busy').textContent * 4;
@@ -121,5 +125,14 @@ function expandHelp(value, direction){
 		else{
 			help.textContent = '?';
 		}	
+	}
+}
+function resize(){
+	window.addEventListener('resize', resizeWindow, false);
+}
+function resizeWindow(){
+	var check = document.getElementById('progress');
+	if(check.offsetHeight == 0 || check.offsetWidth == 0){
+		progress();
 	}
 }

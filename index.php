@@ -36,27 +36,8 @@
 	else{
 		$active = 'none';
 	}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Phone book</title>
-	<meta charset="utf-8" />
-	<link href="style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script src="script.js"></script>
-</head>
-<body>
-	<nav>
-		<img src="image/book.png" alt="książka telefoniczna" />
-		<a href="/phone-book/"><button class="page">Szukaj</button></a>
-		<a href="/phone-book/dodaj.php"><button class="page">Dodaj</button></a>
-		<div id="volume">
-			<p>Pojemność: <span id="busy"><?php echo $volume['count(Id)']; ?></span> / 50</p>	
-			<div id="progress"></div>
-		</div>
-	</nav>
-	<div id="container">
+	include('header.php'); 
+	?>
 		<div id="searchWrapper">
 			<div class="errorWrapper">
 			<?php 
@@ -140,24 +121,6 @@
 			}	
 		?>
 	</div>
-	<div id="help">
-		<button id="up">?</button>
-		<div id="description">
-			<p>W bazie znajduje się 10 stałych pozycji:</p>
-			<ul>
-				<li>- Bartłomiej Hartuna</li>
-				<li>- Bartłomiej Hartuna</li>
-				<li>- Bartłomiej Hartuna</li>
-				<li>- Zbigniew Malinowski</li>
-				<li>- Krzysztof Sakowski</li>
-				<li>- Dagmara Malinowska</li>
-				<li>- Dagmara Malinowska</li>
-				<li>- Katarzyna Pieńkowska</li>
-				<li>- Paulina Kowalska</li>
-				<li>- Zofia Sobkowska</li>
-			</ul>
-			<p>Pozostałe rekordy są automatycznie czyszczone gdy łącznie w bazie znajdzie się 50 wpisów. Aplikacja ma charakter edukacyjny i nie służy do zbierania danych.</p>
-		</div>
-	</div>
-</body>
-</html>
+	<?php
+		include('footer.php'); 
+	?>

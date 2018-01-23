@@ -12,19 +12,27 @@
 		$phoneNumber = $_POST['phoneNumber'];	
 		$email = $_POST['email'];
 		if($firstName != '' && $lastName != '' && $street != '' && $houseNumber != '' && $city != '' && $phoneNumber != ''){
-			if($volume['count(Id)'] >= 50){
-				$result = $connect->prepare('DELETE FROM `Data` WHERE Id > 10');
-				$result->execute();	
-				$result->close();
+			if(preg_match('#[a-zA-Z]#', $phoneNumber)){
+				$validateNumberError = 'Błędny numer telefonu';
 			}
-			$result = $connect->prepare('INSERT Data (FirstName, LastName, Street, HouseNumber, ApartmentNumber, City, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)');	
-			$result->bind_param('sssssss', $firstName, $lastName, $street, $houseNumber, $apartmentNumber, $city, $phoneNumber);
-			$result->execute();
-			$result->close();
-			if($email != ''){
-				mail($email, 'Dodanie wpisu', 'Dziękuję za skorzystanie z mojego formularza. Dane zostaną automatycznie usunięte gdy w bazie znajdzie się 50 pozycji.');
-			}	
-			header('Location: /phone-book/dodaj.php');
+			else if(!preg_match('#(.*)\@(.*)\.(.*)#', $email)){
+				$validateEmailError = 'Błędny e-mail';
+			}
+			else{
+				if($volume['count(Id)'] >= 50){
+					$result = $connect->prepare('DELETE FROM `Data` WHERE Id > 10');
+					$result->execute();	
+					$result->close();
+				}
+				$result = $connect->prepare('INSERT Data (FirstName, LastName, Street, HouseNumber, ApartmentNumber, City, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)');	
+				$result->bind_param('sssssss', $firstName, $lastName, $street, $houseNumber, $apartmentNumber, $city, $phoneNumber);
+				$result->execute();
+				$result->close();
+				if($email != ''){
+					mail($email, 'Dodanie wpisu', 'Dziękuję za skorzystanie z mojego formularza. Dane zostaną automatycznie usunięte gdy w bazie znajdzie się 50 pozycji.');
+				}	
+				header('Location: /phone-book/dodaj.php');	
+			}			
 		}
 		else{
 			if($firstName == ''){
@@ -47,35 +55,22 @@
 			}
 		}
 	}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Phone book</title>
-	<meta charset="utf-8" />
-	<link href="style.css" rel="stylesheet" type="text/css" media="all" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script src="script.js"></script>
-</head>
-<body>
-	<nav>
-		<img src="image/book.png" alt="książka telefoniczna" />
-		<a href="/phone-book/"><button class="page">Szukaj</button></a>
-		<a href="/phone-book/dodaj.php"><button class="page">Dodaj</button></a>
-		<div id="volume">
-			<p>Pojemność: <span id="busy"><?php echo $volume['count(Id)']; ?></span> / 50</p>	
-			<div id="progress"></div>
-		</div>
-	</nav>
-	<div id="container">
+	include('header.php');
+	?> 
 		<div class="errorWrapper">
-			<?php 
-			if($firstNameError || $lastNameError || $streetError || $houseNumberError || $cityError || $phoneNumberError){
-			?>
-			<p class="error"><span>Brakujące dane!</span></p>
+			
 			<?php
-			}
-		?>
+				if($firstNameError || $lastNameError || $streetError || $houseNumberError || $cityError || $phoneNumberError){
+				?><p class="error"><span><?php echo 'Brakujące dane'; ?></span></p><?php
+				}
+				else if($validateNumberError){
+				?><p class="error"><span><?php echo $validateNumberError; ?></span></p><?php
+				}
+				else if($validateEmailError){
+				?><p class="error"><span><?php echo $validateEmailError; ?></span></p><?php	
+				}
+			?>
+			
 		</div>
 		<form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 			<div id="defaultAdd">
@@ -85,31 +80,13 @@
 				<input class="<?php if($houseNumberError){ echo 'red'; } ?>" type="text" placeholder="Numer domu" name="houseNumber" value="<?php if(isset($houseNumber)){ echo $houseNumber; } ?>">
 				<input type="text" placeholder="Numer mieszkania" name="apartmentNumber" value="<?php if(isset($apartmentNumber)){ echo $apartmentNumber; } ?>">
 				<input class="<?php if($cityError){ echo 'red'; } ?>" type="text" placeholder="Miejscowość" name="city" value="<?php if(isset($city)){ echo $city; } ?>">
-				<input class="<?php if($phoneNumberError){ echo 'red'; } ?>" type="text" placeholder="Numer telefonu" name="phoneNumber" value="<?php if(isset($phoneNumber)){ echo $phoneNumber; } ?>">
+				<input class="<?php if($phoneNumberError || $validateNumberError){ echo 'red'; } ?>" type="text" placeholder="Numer telefonu" name="phoneNumber" value="<?php if(isset($phoneNumber)){ echo $phoneNumber; } ?>">
 				<p>Jeżeli chcesz otrzymać powiadomienie, wpisz poniżej e-mail</p>
-				<input type="text" placeholder="E-mail" name="email" value="<?php if(isset($email)){ echo $email; } ?>">
+				<input class="<?php if($validateEmailError){ echo 'red'; } ?>" type="text" placeholder="E-mail" name="email" value="<?php if(isset($email)){ echo $email; } ?>">
 				<input class="send" type="submit" name="Add" value="Dodaj">
 			</div>
 		</form>
 	</div>
-	<div id="help">
-		<button id="up">?</button>
-		<div id="description">
-			<p>W bazie znajduje się 10 stałych pozycji:</p>
-			<ul>
-				<li>- Bartłomiej Hartuna</li>
-				<li>- Bartłomiej Hartuna</li>
-				<li>- Bartłomiej Hartuna</li>
-				<li>- Zbigniew Malinowski</li>
-				<li>- Krzysztof Sakowski</li>
-				<li>- Dagmara Malinowska</li>
-				<li>- Dagmara Malinowska</li>
-				<li>- Katarzyna Pieńkowska</li>
-				<li>- Paulina Kowalska</li>
-				<li>- Zofia Sobkowska</li>
-			</ul>
-			<p>Pozostałe rekordy są automatycznie czyszczone gdy łącznie w bazie znajdzie się 50 wpisów. Aplikacja ma charakter edukacyjny i nie służy do zbierania danych.</p>
-		</div>
-	</div>
-</body>
-</html>
+	<?php
+		include('footer.php'); 
+	?>
