@@ -53,11 +53,11 @@
 		width: 400px;
 		font-size: 10px;
 	}
-	#help{
+	#up{
 		left: 232px;
-		width: 100%;
 	}
 	#description{
+		left: 232px;
 		width: 536px;
 		border-radius: 0px 6px 0px 0px;
 	}
@@ -110,9 +110,6 @@
 	#defaultAdd p{
 		width: 100%;
 		font-size: 9px;
-	}
-	#help{
-		width: 100%;
 	}
 	#up{
 		right: 5%;
@@ -208,6 +205,9 @@ input{
 	width: 140px;
 	height: 40px;
 }
+.grey{
+	border-bottom: 1px solid #dddddd;
+}
 .red{
 	border-bottom: 1px solid #c02020;
 }
@@ -222,6 +222,9 @@ input{
 }
 #noActive{
 	display: none;
+}
+#active{
+	display: inline-block;
 }
 #defaultSearch .send:hover, #alternativeSearch .send:hover, #defaultAdd .send:hover{
 	cursor: pointer;
@@ -273,13 +276,9 @@ h2{
 	cursor: pointer;
 	background-color: #505050;
 }
-#help{
-	position: fixed;
-	bottom: -220px;
-	height: 260px;
-}
 #up{
-	position: absolute;
+	position: fixed;
+	bottom: 0px;
 	width: 40px;
 	height: 40px;
 	border: none;
@@ -294,9 +293,8 @@ h2{
 	background-color: #50b050;
 }
 #description{
-	position: absolute;
-	top: 40px;
-	height: 220px;
+	position: fixed;
+	bottom: -300px;
 	padding: 8px 20px;
 	background-color: rgba(40, 40, 40, 0.9);
 	text-align: justify;

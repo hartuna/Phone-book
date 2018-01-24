@@ -1,11 +1,11 @@
 window.onload = function(){	
 	progress();
+	resize();
 	up();
 	if(location.href == 'http://bartlomiejhartuna.pl/phone-book/'){
 		change();	
 		next();
 	}
-	resize();
 }
 function change(){
 	var element = document.getElementById('change');
@@ -13,17 +13,28 @@ function change(){
 }
 function modify(){
 	var button = document.getElementsByClassName('send');
-	if(button[0].style.display == 'none'){
-		button[1].style.display = 'none';
-		button[0].style.display = 'inline-block';
+	if(button[0].id == 'noActive'){
+		button[0].id = 'active';
+		button[1].id = 'noActive';
+		
 	}
 	else{
-		button[0].style.display = 'none';
-		button[1].style.display = 'inline-block';
+		button[1].id = 'active';
+		button[0].id = 'noActive';
+		
 	}
 	var error = document.getElementsByClassName('error');
-	error[0].style.display = 'none';
-	error[1].style.display = 'none';
+	var red = document.getElementsByClassName('red');
+	var grey = document.getElementsByClassName('grey');
+	for(var i = 0; i < red.length; i++){
+		red[i].style.borderColor = '#dddddd';
+	}
+	for(var i = 0; i < grey.length; i++){
+		grey[i].textContent = '';
+	}
+	for(var i = 0; i < error.length; i++){
+		error[i].style.display = 'none';
+	}	
 }
 function progress(){
 	var busyData = document.getElementById('busy').textContent * 4;
@@ -98,24 +109,38 @@ function up(){
 }
 function checkUp(){
 	var help = document.getElementById('up');
+	var height = document.getElementById('description').offsetHeight;
 	if(help.textContent == '?'){
-		expandHelp(-220, 'up');
+		expandHelp(-height, 'up', height);
 	}
 	else{
-		expandHelp(0, 'down');
+		expandHelp(0, 'down', height);
 	}
 }
-function expandHelp(value, direction){
-	var up = document.getElementById('help');
+function expandHelp(value, direction, height){
+	var button = document.getElementById('up');
+	var up = document.getElementById('description');
 	if(value < 0 && direction == 'up'){
-		value += 20;
+		if(value > -30){
+			value = 0;
+		}
+		else{
+			value += 30;	
+		}
+		button.style.bottom = height + value + 'px';
 		up.style.bottom = value + 'px';
-		setTimeout(function(){expandHelp(value, direction)}, 10);
+		setTimeout(function(){expandHelp(value, direction, height)}, 10);
 	}
-	else if(direction == 'down' && value > -220){
-		value -= 20;
+	else if(direction == 'down' && value > -height){
+		if(-height - value > -30){
+			value = -height;
+		}
+		else{
+			value -= 30;	
+		}
+		button.style.bottom = height + value + 'px';
 		up.style.bottom = value + 'px';
-		setTimeout(function(){expandHelp(value, direction)}, 10);
+		setTimeout(function(){expandHelp(value, direction, height)}, 10);
 	}
 	else{
 		var help = document.getElementById('up');

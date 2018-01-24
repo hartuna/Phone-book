@@ -51,8 +51,8 @@
 			</div>
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 				<div id="defaultSearch">
-					<input class="<?php if($firstNameError){ echo 'red'; } ?>" type="text" placeholder="Imię" name="firstName" value="<?php if(isset($firstName)){ echo $firstName; } ?>">
-					<input class="<?php if($lastNameError){ echo 'red'; } ?>" type="text" placeholder="Nazwisko" name="lastName" value="<?php if(isset($lastName)){ echo $lastName; } ?>">
+					<input class="<?php if($firstNameError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Imię" name="firstName" value="<?php if(isset($firstName)){ echo $firstName; } ?>">
+					<input class="<?php if($lastNameError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Nazwisko" name="lastName" value="<?php if(isset($lastName)){ echo $lastName; } ?>">
 					<input class="send" <?php if($active == 'alternative'){ echo 'id="noActive"'; } ?> type="submit" name="sendDefault" value="Szukaj">
 				</div>
 			</form>
@@ -69,10 +69,10 @@
 				?>
 				</div>
 				<div id="alternativeSearch">
-					<input class="<?php if($streetError){ echo 'red'; } ?>" type="text" placeholder="Ulica" name="street" value="<?php if(isset($street)){ echo $street; } ?>">
-					<input class="<?php if($houseNumberError){ echo 'red'; } ?>" type="text" placeholder="Numer domu" name="houseNumber" value="<?php if(isset($houseNumber)){ echo $houseNumber; } ?>">
+					<input class="<?php if($streetError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Ulica" name="street" value="<?php if(isset($street)){ echo $street; } ?>">
+					<input class="<?php if($houseNumberError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Numer domu" name="houseNumber" value="<?php if(isset($houseNumber)){ echo $houseNumber; } ?>">
 					<input type="text" placeholder="Numer mieszkania" name="apartmentNumber" value="<?php if(isset($apartmentNumber)){ echo $apartmentNumber; } ?>">
-					<input class="<?php if($cityError){ echo 'red'; } ?>" type="text" placeholder="Miejscowość" name="city" value="<?php if(isset($city)){ echo $city; } ?>">
+					<input class="<?php if($cityError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Miejscowość" name="city" value="<?php if(isset($city)){ echo $city; } ?>">
 					<input class="send" <?php if($active == 'default' || $active == 'none'){ echo 'id="noActive"'; } ?> type="submit" name="sendAlternative" value="Szukaj">
 				</div>
 				</form>
