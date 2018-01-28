@@ -14,6 +14,7 @@
 			<li>- Zofia Sobkowska</li>
 		</ul>
 		<p>Pozostałe rekordy są automatycznie czyszczone gdy łącznie w bazie znajdzie się ponad 50 wpisów. Aplikacja ma charakter edukacyjny i nie służy do zbierania danych.</p>
+		<p>W celu dokonania edycji lub usunięcia wprowadzonych danych przed osiągnięciem 50 wpisów należy wyszukać pozycję, a następnie wybrać edytuj lub usuń.</p>
 	</div>
 </body>
 </html>

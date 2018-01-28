@@ -71,14 +71,14 @@
 				<div id="alternativeSearch">
 					<input class="<?php if($streetError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Ulica" name="street" value="<?php if(isset($street)){ echo $street; } ?>">
 					<input class="<?php if($houseNumberError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Numer domu" name="houseNumber" value="<?php if(isset($houseNumber)){ echo $houseNumber; } ?>">
-					<input type="text" placeholder="Numer mieszkania" name="apartmentNumber" value="<?php if(isset($apartmentNumber)){ echo $apartmentNumber; } ?>">
+					<input class="grey" type="text" placeholder="Numer mieszkania" name="apartmentNumber" value="<?php if(isset($apartmentNumber)){ echo $apartmentNumber; } ?>">
 					<input class="<?php if($cityError){ echo 'red'; }else{ echo 'grey'; } ?>" type="text" placeholder="Miejscowość" name="city" value="<?php if(isset($city)){ echo $city; } ?>">
 					<input class="send" <?php if($active == 'default' || $active == 'none'){ echo 'id="noActive"'; } ?> type="submit" name="sendAlternative" value="Szukaj">
 				</div>
 				</form>
 			</div>	
 	<?php
-		if($active != 'none'){
+		if($active != 'none' && $alternativeError == false && $defaultError == false){
 			if(isset($_POST['sendDefault'])){ 
 				$result = $connect->query('SELECT * FROM Data WHERE FirstName = "' . $firstName . '" AND LastName = "' . $lastName . '"');	
 			}
@@ -101,6 +101,17 @@
 						<p><span>Nr mieszkania:</span><?php echo $value['ApartmentNumber']; ?></p>
 						<p><span>Miejscowość:</span><?php echo $value['City']; ?></p>
 						<p><span>Nr telefonu:</span><?php echo $value['PhoneNumber']; ?></p>
+						<?php
+						if($value['Id'] > 10){
+						?>
+						<form method="post" action="edytuj.php">
+							<input type="hidden" name="id" value="<?php echo $value['Id']; ?>">
+							<input class="edit" type="submit" name="edit" value="Edytuj">
+							<input class="edit" type="submit" name="delete" value="Usuń">
+						</form>
+						<?php
+						}
+						?>
 					</div>
 					<?php	
 				}
@@ -110,6 +121,7 @@
 			if($i != 0){ 
 			?>
 			<h2>Pozycja <span id="number">1</span>/<span id="numberMax"><?php echo $i ?></span></h2>
+
 			<?php
 			}
 			if($i > 1){

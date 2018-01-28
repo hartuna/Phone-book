@@ -16,22 +16,20 @@ function modify(){
 	if(button[0].id == 'noActive'){
 		button[0].id = 'active';
 		button[1].id = 'noActive';
-		
 	}
 	else{
 		button[1].id = 'active';
-		button[0].id = 'noActive';
-		
+		button[0].id = 'noActive';	
 	}
-	var error = document.getElementsByClassName('error');
 	var red = document.getElementsByClassName('red');
-	var grey = document.getElementsByClassName('grey');
 	for(var i = 0; i < red.length; i++){
 		red[i].style.borderColor = '#dddddd';
 	}
+	var grey = document.getElementsByClassName('grey');
 	for(var i = 0; i < grey.length; i++){
-		grey[i].textContent = '';
+		grey[i].value = '';
 	}
+	var error = document.getElementsByClassName('error');
 	for(var i = 0; i < error.length; i++){
 		error[i].style.display = 'none';
 	}	

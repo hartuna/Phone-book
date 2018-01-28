@@ -38,13 +38,13 @@
 		margin: 20px 0px 100px 300px;
 		width: 500px;
 	}
-	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #change{
+	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #change{
 		width: 400px;
 	}
 	#change{
 		margin-top: 50px;
 	}
-	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
+	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send{
 		width: 90px;
 		height: 90px;	
 		font-size: 18px;
@@ -96,13 +96,13 @@
 		margin: 114px auto 100px auto;
 		width: 90%;
 	}
-	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #change{
+	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #change{
 		width: 100%;
 	}
 	#change{
 		margin-top: 10px;
 	}
-	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
+	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send{
 		width: 70px;
 		height: 70px;	
 		font-size: 14px;
@@ -146,14 +146,14 @@ nav img{
 	bottom: 4px;
 	border-radius: 6px;
 }
-.page{
+.page, .result input{
 	border: none;
 	outline: none;
 	background-color: #d06000;
 	color: #ffffff;
 	border-radius: 4px;
 }
-.page:hover{
+.page:hover, .result input:hover{
 	cursor: pointer;
 	background-color: #e07000;
 }
@@ -184,7 +184,7 @@ input{
 	background-color: #fafafa;
 	border-radius: 6px;
 }
-#defaultSearch input, #alternativeSearch input, #defaultAdd input{
+#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input{
 	height: 40px;
 }
 #change{
@@ -211,7 +211,7 @@ input{
 .red{
 	border-bottom: 1px solid #c02020;
 }
-#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send{
+#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send{
 	padding: 0px;
 	float: right;
 	background-color: #f04000;
@@ -226,7 +226,7 @@ input{
 #active{
 	display: inline-block;
 }
-#defaultSearch .send:hover, #alternativeSearch .send:hover, #defaultAdd .send:hover{
+#defaultSearch .send:hover, #alternativeSearch .send:hover, #defaultAdd .send:hover, #defaultDelete .send:hover{
 	cursor: pointer;
 	background-color: #f06000;
 }
@@ -260,6 +260,12 @@ h2{
 .result span{
 	margin-right: 20px;
 	color: #aaaaaa;
+}
+.result input{
+	margin-top: 10px;
+	width: 140px;
+	height: 40px;
+	font-size: 16px;
 }
 .pager{
 	margin: 10px 0px;
@@ -300,6 +306,12 @@ h2{
 	text-align: justify;
 	color: #dddddd;
 	font-size: 11px;
+}
+#description ul{
+	margin-bottom: 4px;
+}
+#description p{
+	margin-bottom: 4px;
 }
 #description li{
 	list-style-type: none;
