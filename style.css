@@ -38,18 +38,18 @@
 		margin: 20px 0px 100px 300px;
 		width: 500px;
 	}
-	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #change{
+	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #defaultEdit input, #change{
 		width: 400px;
 	}
 	#change{
 		margin-top: 50px;
 	}
-	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send{
+	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send, #defaultEdit .send{
 		width: 90px;
 		height: 90px;	
 		font-size: 18px;
 	}
-	#defaultAdd p{
+	#defaultAdd p, #defaultEdit p{
 		width: 400px;
 		font-size: 10px;
 	}
@@ -96,18 +96,18 @@
 		margin: 114px auto 100px auto;
 		width: 90%;
 	}
-	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #change{
+	#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #defaultEdit input, #change{
 		width: 100%;
 	}
 	#change{
 		margin-top: 10px;
 	}
-	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send{
+	#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send, #defaultEdit .send{
 		width: 70px;
 		height: 70px;	
 		font-size: 14px;
 	}
-	#defaultAdd p{
+	#defaultAdd p, #defaultEdit p{
 		width: 100%;
 		font-size: 9px;
 	}
@@ -184,7 +184,7 @@ input{
 	background-color: #fafafa;
 	border-radius: 6px;
 }
-#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input{
+#defaultSearch input, #alternativeSearch input, #defaultAdd input, #defaultDelete input, #defaultEdit input{
 	height: 40px;
 }
 #change{
@@ -211,7 +211,7 @@ input{
 .red{
 	border-bottom: 1px solid #c02020;
 }
-#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send{
+#defaultSearch .send, #alternativeSearch .send, #defaultAdd .send, #defaultDelete .send, #defaultEdit .send{
 	padding: 0px;
 	float: right;
 	background-color: #f04000;
@@ -226,13 +226,14 @@ input{
 #active{
 	display: inline-block;
 }
-#defaultSearch .send:hover, #alternativeSearch .send:hover, #defaultAdd .send:hover, #defaultDelete .send:hover{
+#defaultSearch .send:hover, #alternativeSearch .send:hover, #defaultAdd .send:hover, #defaultDelete .send:hover, #defaultEdit .send:hover{
 	cursor: pointer;
 	background-color: #f06000;
 }
-#defaultAdd p{
+#defaultAdd p, #defaultEdit p{
 	margin-bottom: 10px;
-	text-align: center;
+	margin-left: 10px;
+	text-align: letter-spacing: 	;
 	color: #808080;
 }
 h2{

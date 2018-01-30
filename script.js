@@ -6,6 +6,9 @@ window.onload = function(){
 		change();	
 		next();
 	}
+	if(location.href == 'http://bartlomiejhartuna.pl/phone-book/edytuj.php'){
+		mainPage(6);
+	}
 }
 function change(){
 	var element = document.getElementById('change');
@@ -157,5 +160,16 @@ function resizeWindow(){
 	var check = document.getElementById('progress');
 	if(check.offsetHeight == 0 || check.offsetWidth == 0){
 		progress();
+	}
+}
+function mainPage(time){
+	var element = document.getElementById('time');
+	if(time > 1){
+		time--;
+		element.textContent = time;
+		setTimeout(function(){mainPage(time)}, 1000);
+	}
+	else{
+		location.href = 'http://bartlomiejhartuna.pl/phone-book/';	
 	}
 }
