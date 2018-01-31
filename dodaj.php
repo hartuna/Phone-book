@@ -13,16 +13,18 @@
 		$email = $_POST['email'];
 		$securityCode = $_POST['securityCode'];
 		if($firstName != '' && $lastName != '' && $street != '' && $houseNumber != '' && $city != '' && $phoneNumber != '' && $securityCode != ''){
-			if(preg_match('#[a-zA-Z]#', $phoneNumber)){
+			if(strlen($phoneNumber) > 12 || strlen($houseNumber) > 20 || strlen($apartmentNumber) > 20 || strlen($firstName) > 100 || strlen($lastName) > 100 || strlen($street) > 100 || strlen($city) > 100){
+				$validateLength = 'Przekroczono maksymalną ilość znaków';
+			}
+			else if(preg_match('#[a-zA-Z]#', $phoneNumber)){
 				$validateNumberError = 'Błędny numer telefonu';
 			}
 			else if(!is_numeric($securityCode) || $securityCode < 0 || $securityCode > 999999){
 				$validateSecurityCodeError = 'Błędny kod zabezpieczający';
 			}
-			else if(!preg_match('#(.*)\@(.*)\.(.*)#', $email)){
+			else if(!preg_match('#(.*)\@(.*)\.(.*)#', $email) && $email != ''){
 				$validateEmailError = 'Błędny e-mail';
 			}
-			
 			else{
 				if($volume['count(Id)'] >= 50){
 					$result = $connect->prepare('DELETE FROM Data WHERE Id > 10');
@@ -69,6 +71,9 @@
 			<?php
 				if($firstNameError || $lastNameError || $streetError || $houseNumberError || $cityError || $phoneNumberError || $securityCodeError){
 				?><p class="error"><span><?php echo 'Brakujące dane'; ?></span></p><?php
+				}
+				else if($validateLength){
+				?><p class="error"><span><?php echo $validateLength; ?></span></p><?php
 				}
 				else if($validateNumberError){
 				?><p class="error"><span><?php echo $validateNumberError; ?></span></p><?php

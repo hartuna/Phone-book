@@ -11,10 +11,15 @@
 				$result = $connect->query('SELECT SecurityCode FROM Data WHERE Id = "' . $id . '"');
 				$value = mysqli_fetch_array($result);
 				if($value['SecurityCode'] == $securityCode){
-					$result = $connect->prepare('DELETE FROM Data WHERE Id = ' . $id);
-					$result->execute();	
-					$result->close();
-					header('Location: /phone-book/edytuj.php');	
+					if($id <= 10){
+						$hackError = 'Proba edycji stałego rekordu - blokada';
+					}
+					else{
+						$result = $connect->prepare('DELETE FROM Data WHERE Id = ' . $id);
+						$result->execute();	
+						$result->close();
+						header('Location: /phone-book/edytuj.php');		
+					}
 				}
 				else{
 					$validateSecurityCodeError = 'Błędny kod zabezpieczający';
@@ -29,6 +34,9 @@
 		<?php
 			if($securityCodeError){
 			?><p class="error"><span><?php echo 'Brakujące dane'; ?></span></p><?php
+			}
+			else if($hackError){
+			?><p class="error"><span><?php echo $hackError; ?></span></p><?php
 			}
 			else if($validateSecurityCodeError){
 			?><p class="error"><span><?php echo $validateSecurityCodeError; ?></span></p><?php
@@ -72,11 +80,19 @@
 				else{
 					$result = $connect->query('SELECT SecurityCode FROM Data WHERE Id = "' . $id . '"');
 					$value = mysqli_fetch_array($result);
-					if($value['SecurityCode'] == $securityCode){
-						$result = $connect->prepare('UPDATE Data SET FirstName = "' . $firstName . '", LastName = "' . $lastName . '", Street = "' . $street . '", HouseNumber = "' . $houseNumber . '", ApartmentNumber = "' . $apartmentNumber . '", City = "' . $city . '", PhoneNumber = "' . $phoneNumber . '" WHERE Id = "' . $id . '"');	
-						$result->execute();
-						$result->close();
-						header('Location: /phone-book/edytuj.php');	
+					if(strlen($phoneNumber) > 12 || strlen($houseNumber) > 20 || strlen($apartmentNumber) > 20 || strlen($firstName) > 100 || strlen($lastName) > 100 || strlen($street) > 100 || strlen($city) > 100){
+						$validateLength = 'Przekroczono maksymalną ilość znaków';
+					}
+					else if($value['SecurityCode'] == $securityCode){
+						if($id <= 10){
+							$hackError = 'Proba edycji stałego rekordu - blokada';
+						}
+						else{
+							$result = $connect->prepare('UPDATE Data SET FirstName = "' . $firstName . '", LastName = "' . $lastName . '", Street = "' . $street . '", HouseNumber = "' . $houseNumber . '", ApartmentNumber = "' . $apartmentNumber . '", City = "' . $city . '", PhoneNumber = "' . $phoneNumber . '" WHERE Id = "' . $id . '"');	
+							$result->execute();
+							$result->close();
+							header('Location: /phone-book/edytuj.php');		
+						}
 					}
 					else{
 						$validateSecurityCodeError = 'Błędny kod zabezpieczający';
@@ -113,8 +129,14 @@
 			if($securityCodeError || $firstNameError || $lastNameError || $streetError || $houseNumberError || $cityError || $phoneNumberError){
 			?><p class="error"><span><?php echo 'Brakujące dane'; ?></span></p><?php
 			}
+			else if($validateLength){
+			?><p class="error"><span><?php echo $validateLength; ?></span></p><?php
+			}
 			else if($validateNumberError){
 			?><p class="error"><span><?php echo $validateNumberError; ?></span></p><?php
+			}
+			else if($hackError){
+			?><p class="error"><span><?php echo $hackError; ?></span></p><?php
 			}
 			else if($validateSecurityCodeError){
 			?><p class="error"><span><?php echo $validateSecurityCodeError; ?></span></p><?php	

@@ -306,13 +306,13 @@ h2{
 	background-color: rgba(40, 40, 40, 0.9);
 	text-align: justify;
 	color: #dddddd;
-	font-size: 11px;
+	font-size: 10px;
 }
 #description ul{
-	margin-bottom: 4px;
+	margin-bottom: 2px;
 }
 #description p{
-	margin-bottom: 4px;
+	margin-bottom: 2px;
 }
 #description li{
 	list-style-type: none;
