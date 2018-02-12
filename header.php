@@ -1,3 +1,9 @@
+<?php
+	if(strstr($_SERVER['HTTP_HOST'], 'www.')){
+		header('Location: http://bartlomiejhartuna.pl' . $_SERVER['REQUEST_URI']);
+		exit();
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
